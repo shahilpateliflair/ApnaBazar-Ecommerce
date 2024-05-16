@@ -1,0 +1,104 @@
+<!-- <input type="file" (change)="onFileSelected($event)" multiple>
+<div *ngFor="let image of selectedImages">
+  <input type="text" [(ngModel)]="image.name" placeholder="Enter name for {{ image.file.name }}">
+</div>
+<button (click)="uploadImages()">Upload Images</button> -->
+<app-admin-header></app-admin-header>
+
+<div class="container">
+  <!-- <div class="fixed">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/woman-adding-product-to-cart-4268110-3550574.png" alt="Add Product">
+    </div> -->
+  <form
+    (submit)="addProduct()"
+    enctype="multipart/form-data"
+    class="form-container"
+    [formGroup]="productForm"
+  >
+    <h1>Add Product</h1>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" required />
+    <!-- <div formArrayName="variants">
+   
+
+
+      <div *ngFor="let variant of newProduct.variants; let i = index" [formGroupName]="i">
+        <div [formGroupName]="i">
+          <label>
+            Size:
+            <input type="text" formControlName="size">
+          </label>
+          <label>
+            Color:
+            <input type="text" formControlName="color">
+          </label>
+          <label>
+            Available:
+            <input type="checkbox" formControlName="available">
+          </label>
+          
+        </div>
+      </div>
+    </div> -->
+    <div *ngFor="let variant of newProduct.variants; let i = index" [formGroupName]="i">
+        <label for="size{{i}}">Size:</label>
+        <input type="text" id="size{{i}}" formControlName="size"  name="size{{i}}" required>
+        
+        <label for="color{{i}}">Color:</label>
+        <input type="text" id="color{{i}}" formControlName="color"   name="color{{i}}" required>
+
+        <label for="available{{i}}">Available:</label>
+        <input type="checkbox" id="available{{i}}" formControlName="available"   name="available{{i}}">
+        
+        
+          <label for="images">Select Image(s):</label>
+          <input type="file" name="images" (change)="onFileSelected($event)" multiple>
+    </div>
+    <button type="button" (click)="addVariant()">Add Variant</button>
+    <label for="description">Description:</label>
+    <input
+      type="text"
+      id="description"
+      formControlName="description"
+      required
+    />
+    <label for="category">categories:</label>
+    <select formControlName="category">
+      <option value="men" >Men</option>
+      <option value="women">Women</option>
+      <option value="electronics">Electronics</option>
+    </select>
+
+    <label for="MRP">MRP</label>
+    <input type="text" id="MRP" formControlName="MRP" required />
+
+    <label for="off">Off:</label>
+    <input
+      type="text"
+      id="off"
+      formControlName="off"
+      formControlName="off"
+      required
+    />
+
+    <label for="tag">Tag:</label>
+    <input
+      type="text"
+      id="tag"
+      formControlName="tag"
+      formControlName="tag"
+      required
+    />
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" formControlName="price" required />
+
+    <label for="origins">Origins:</label>
+    <input type="text" id="origins" formControlName="origins" required />
+
+    <label for="deliverTime">Deliver Time:</label>
+    <input type="number" id="Deliver" formControlName="deliverTime" required />
+
+    <button type="submit" class="submit-button">Add Product</button>
+  </form>
+</div>

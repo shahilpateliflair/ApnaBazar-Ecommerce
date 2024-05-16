@@ -1,0 +1,29 @@
+
+  <div class="product-container">
+    <div class="product-card" *ngFor="let product of products">
+        <a [routerLink]="['/product', product._id]">
+      <h2>{{ product.name }}</h2>
+      <p><strong>Description:</strong> {{ product.description }}</p>
+      <p><strong>Category:</strong> {{ product.category }}</p>
+      <p><strong>Price:</strong> ${{ product.price }}</p>
+      <p><strong>MRP:</strong> ${{ product.MRP }}</p>
+      <p><strong>Discount:</strong> {{ product.off }}%</p>
+      <p><strong>Origins:</strong> {{ product.origins.join(', ') }}</p>
+      <p><strong>Delivery Time:</strong> {{ product.deliverTime.join(', ') }} days</p>
+      <p><strong>Tags:</strong> {{ product.tag }}</p>
+      
+      <h3>Variants:</h3>
+      <div *ngFor="let variant of product.variants">
+        <div class="variant">
+          <p><strong>Size:</strong> {{ variant.size }}</p>
+          <p><strong>Color:</strong> {{ variant.color }}</p>
+          <p><strong>Available:</strong> {{ variant.available ? 'Yes' : 'No' }}</p>
+          <h4>Images:</h4>
+          <div *ngFor="let image of variant.images">
+            <img [src]="image.urls[0]" alt="{{ image.color }}" class="product-image">
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div>
